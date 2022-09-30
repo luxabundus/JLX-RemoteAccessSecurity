@@ -1,0 +1,4 @@
+LIBRARY RASECCLIENTACTIONS
+EXPORTS
+	SuspendMonitor
+	ResumeMonitor

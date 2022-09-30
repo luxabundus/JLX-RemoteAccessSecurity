@@ -1,0 +1,25 @@
+
+Syntax: rasec [<command>]
+
+<command>:
+
+  access all | <remote-server> [user=<remote-username>][password=<remote-password>]
+    - Register access to all or a specific remote server.
+
+  leave <remote-server>
+    - Unregister access to a remote server.
+
+  auto [start | stop | ?]
+    - Starts/stops/queries automatic network detection and registration. (Defaults to 'start'.)
+
+  list
+    - Display registered remote servers.
+
+  shell
+    - Enter shell mode.
+
+  help
+    - Display help information.
+
+  cls
+    - Clear the screen.

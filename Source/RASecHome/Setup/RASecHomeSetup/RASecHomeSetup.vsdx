@@ -1,0 +1,27 @@
+<VSDX>
+	<Package>
+		<Component FileName="RASecHome.exe">
+			<Service>
+				<ServiceName>RASecHome</ServiceName>
+				<DisplayName>Remote Access Security Home Service</DisplayName>
+				<Recovery>
+					<First Action="restart"/>
+					<Second Action="restart"/>
+				</Recovery>
+			</Service>
+			<RemoveFile>
+				<FileName>RASecHome.log</FileName>
+				<Directory>TARGETDIR</Directory>
+				<InstallMode>msidbRemoveFileInstallModeOnBoth</InstallMode>
+			</RemoveFile>
+			<RemoveFile>
+				<FileName>rasechome.db</FileName>
+				<Directory>TARGETDIR</Directory>
+				<InstallMode>msidbRemoveFileInstallModeOnRemove</InstallMode>
+			</RemoveFile>
+		</Component>
+	</Package>
+	<PostBuild>
+		<Run>SignTool sign /f "%JlxAppsPath%\Certs\Joel Luzadas Inc.pfx" /tr http://timestamp.digicert.com /td SHA256 /p "U93oO7aqeqw*hd" /d "Remote Access Security Home" "$(MsiFilePath)"</Run>
+	</PostBuild>
+</VSDX>

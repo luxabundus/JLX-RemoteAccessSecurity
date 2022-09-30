@@ -1,0 +1,29 @@
+<VSDX>
+	<Package>
+		<Component ServiceName="RASecServer" FileName="RASecServer.exe">
+			<Service>
+				<ServiceName>$(ServiceName)</ServiceName>
+				<DisplayName>Remote Access Security Service</DisplayName>
+				<Recovery>
+					<First Action="restart"/>
+					<Second Action="restart"/>
+				</Recovery>
+			</Service>
+			<RemoveFile>
+				<Directory>[TARGETDIR]</Directory>
+				<FileName>RASecServer.log</FileName>
+				<InstallMode>msidbRemoveFileInstallModeOnBoth</InstallMode>
+			</RemoveFile>
+<!--
+			<RemoveFile>
+				<Directory>[TARGETDIR]</Directory>
+				<FileName>rasec.db</FileName>
+				<InstallMode>msidbRemoveFileInstallModeOnRemove</InstallMode>
+			</RemoveFile>
+-->
+		</Component>
+	</Package>
+	<PostBuild>
+		<Run>SignTool sign /f "%DevCertPath%\Joel Luzadas\Joel Luzadas Inc.pfx" /tr http://timestamp.digicert.com /td SHA256 /p "U93oO7aqeqw*hd" /d "Remote Access Security Server" "$(MsiFilePath)"</Run>
+	</PostBuild>
+</VSDX>

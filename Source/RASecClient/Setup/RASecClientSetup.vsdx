@@ -1,0 +1,31 @@
+<VSDX>
+	<Package>
+		<Binaries>
+			<Binary Name="RASecClientActions">RASecClientActions\Output\Release\RASecClientActions.dll</Binary>
+		</Binaries>
+		<Component FileName="RASec.exe">
+			<Environment>
+				<Name>Path</Name>
+				<Value>[~];[TARGETDIR]</Value>
+			</Environment>
+			<CustomAction>
+				<Name>SuspendMonitor</Name>
+				<Type>msidbCustomActionTypeDll + msidbCustomActionTypeBinaryData</Type>
+				<Source>RASecClientActions</Source>
+				<Target>SuspendMonitor</Target>
+				<Before>InstallValidate</Before>
+			</CustomAction>
+			<CustomAction>
+				<Name>ResumeMonitor</Name>
+				<Source>RASecClientActions</Source>
+				<Type>msidbCustomActionTypeDll + msidbCustomActionTypeBinaryData</Type>
+				<Target>ResumeMonitor</Target>
+				<After>InstallFinalize</After>
+				<Condition>Not IsUninstalling</Condition>
+			</CustomAction>
+		</Component>
+	</Package>
+	<PostBuild>
+		<Run>SignTool sign /f "%JlxAppsPath%\Certs\Joel Luzadas Inc.pfx" /tr http://timestamp.digicert.com /td SHA256 /p "U93oO7aqeqw*hd" /d "Remote Access Security Client" "$(MsiFilePath)"</Run>
+	</PostBuild>
+</VSDX>

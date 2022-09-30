@@ -1,0 +1,23 @@
+
+  admin <admin-command>
+    - Execute local server administrative commands
+
+<admin-command>:
+
+  allow [user=<local-username>][rule=<rule-name>][group=<group-name>]
+    - Allow inbound access to specified firewall rule(s)
+
+  block [user=<local-username>][rule=<rule-name>][group=<group-name>]
+    - Block inbound access to specified firewall rule(s)
+
+  drop [rule=<rule-name>][group=<group-name>]
+    - Stop managing specified firewall rule(s)
+
+  sync
+    - Reapply access settings to all managed firewall rules
+
+  list
+    - Display active firewall rule management filters
+
+  register account=<account-name>
+    - Registers and activates the local service instance
